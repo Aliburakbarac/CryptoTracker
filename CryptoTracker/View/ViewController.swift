@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    
+    var colorArray = [UIColor]()
 
     @IBOutlet weak var tableView: UITableView!
     private var cryptoListViewModel : CryptoListViewModel!
@@ -21,6 +21,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        self.colorArray = [
+            UIColor.darkGray,
+            UIColor.lightGray
+        ]
         
         getData()
     }
@@ -48,6 +53,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         cell.priceText.text = cryptoViewModel.price
         cell.currencyText.text = cryptoViewModel.name
+        cell.backgroundColor = self.colorArray[indexPath.row % 2]
+        
         
         return cell
     }
